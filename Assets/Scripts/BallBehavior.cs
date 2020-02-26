@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BallBehavior : MonoBehaviour
 {
@@ -14,10 +15,15 @@ public class BallBehavior : MonoBehaviour
     private bool needSpawn;
     public GameObject launcher;
 
+    public Text scoreDisplay;
+
+    public int score;
+
     // Start is called before the first frame update
     void Start()
     {
         needSpawn = true;
+        score = 0;
         // gateBehavior = gameObject.GetComponent<GateBehavior>();
     }
 
@@ -40,6 +46,7 @@ public class BallBehavior : MonoBehaviour
     }
 
     void Respawn() {
+        Score(-10);
         StopBall();
         Spawn();
         TempLaunch();
@@ -47,19 +54,42 @@ public class BallBehavior : MonoBehaviour
     }
 
     void OnCollisionEnter(Collision other) {
-
         // check for bottom wall collision
         if (other.gameObject.name == "Wall Bottom") {
             // respawn ball
             needSpawn = true;
 
             // set gate inactive
-            gateBehavior.SetInactive();
+            gateBehavior.SetInactive();        
+        } 
+    }
+
+    void OnTriggerEnter(Collider other) {
+        // check for target/bottom collisoin
+        if (other.gameObject.CompareTag("Target")) {
+            Score(10);
         }
     }
 
     void StopBall() {
         ballRigidBody.velocity = Vector3.zero;
         ballRigidBody.angularVelocity = Vector3.zero;
+    }
+
+    void Score(int delta) {
+        // change score    
+        score += delta;
+    
+        // don't let score be negative
+        if (score < 0) {
+            score = 0;
+        }
+
+        // update display
+        RefreshDisplay();
+    }
+
+    void RefreshDisplay() {
+        scoreDisplay.text = "Score: " + score.ToString();
     }
 }

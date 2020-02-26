@@ -24,7 +24,6 @@ public class GateBehavior : MonoBehaviour
     }
 
     void OnTriggerExit(Collider other) {
-        Debug.Log("no longer touching");
         // make sure the collider is the ball's
         if (other.gameObject.name == "Ball") {
             // enable gate
