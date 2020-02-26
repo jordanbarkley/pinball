@@ -693,6 +693,7 @@ GameObject:
   - component: {fileID: 857414908}
   - component: {fileID: 857414907}
   - component: {fileID: 857414906}
+  - component: {fileID: 857414912}
   m_Layer: 0
   m_Name: Ball
   m_TagString: Untagged
@@ -714,8 +715,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ballSpawn: {fileID: 1579433513}
   ballRigidBody: {fileID: 857414907}
-  launchSpeed: 1250
+  launchSpeed: 1000
   caseTransform: {fileID: 1015912909}
+  gateBehavior: {fileID: 857414912}
+  launcher: {fileID: 1097443002}
 --- !u!54 &857414907
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -806,6 +809,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &857414912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 857414905}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 125407771827bb14fb3d27d56e84fe80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activeMaterial: {fileID: 2100000, guid: 8532ada420a19b44c95ab38fcd290c45, type: 2}
+  inactiveMaterial: {fileID: 2100000, guid: 8dbc1c3afd1168d4b854403b04f39384, type: 2}
+  meshRenderer: {fileID: 1471994934}
+  boxCollider: {fileID: 1471994933}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -1513,7 +1532,7 @@ MonoBehaviour:
   caseTransform: {fileID: 1015912909}
   flipperAngleMin: 0
   flipperAngleMax: 60
-  flipperModifier: 6
+  flipperModifier: 1
   flipperStrength: 1000
   isReversed: 1
   flipperStatus: 0
@@ -1721,7 +1740,7 @@ MonoBehaviour:
   caseTransform: {fileID: 1015912909}
   flipperAngleMin: 0
   flipperAngleMax: 60
-  flipperModifier: 6
+  flipperModifier: 1
   flipperStrength: 1000
   isReversed: 0
   flipperStatus: 0
