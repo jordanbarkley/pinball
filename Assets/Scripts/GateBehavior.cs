@@ -32,7 +32,7 @@ public class GateBehavior : MonoBehaviour
         }
     }
 
-    void SetInactive() {
+    public void SetInactive() {
         // visual update
         meshRenderer.material = inactiveMaterial;
 
@@ -40,7 +40,7 @@ public class GateBehavior : MonoBehaviour
         boxCollider.isTrigger = true;
     }
 
-    void SetActive() {
+    public void SetActive() {
         // visual update
         meshRenderer.material = activeMaterial;
 

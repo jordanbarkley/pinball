@@ -20,7 +20,7 @@ public class FlipperBehavior : MonoBehaviour
         still,
         movingDown,
         movingUp,
-    } 
+    }
 
     public FlipperStatus flipperStatus;
 
@@ -30,7 +30,6 @@ public class FlipperBehavior : MonoBehaviour
 
     private int reverse;
 
-
     // for future jordan
     // need to use add force
         // base the amount of force to add on height of ball at click
@@ -39,29 +38,33 @@ public class FlipperBehavior : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // flipper still to start
         flipperStatus = FlipperStatus.still;
         flipperAngleDifference = 0;
 
+        // the left and right paddle rotate opposite ways
+        // this multiplier takes this into account in an easy way
         if (isReversed) {
             reverse = -1;
         } else {
             reverse = 1;
         }
-
-
     }
 
     // Update is called once per frame
     void Update()
     {
         // update flipper status based on button press/release
-        checkButtonPresses();
+        CheckButtonPresses();
 
         // move the flipper based on flipperStatus
-        moveFlipper();
+        MoveFlipper();
+
+        // disable flipper collision for a short period (to prevent double hits)
+
     }
 
-    void checkButtonPresses() {
+    void CheckButtonPresses() {
         // check for left flipper press
         if (Input.GetKeyDown(activationKey)) {
             flipperStatus = FlipperStatus.movingUp;
@@ -73,7 +76,7 @@ public class FlipperBehavior : MonoBehaviour
         }
     }
 
-    void moveFlipper() {
+    void MoveFlipper() {
         
         // move up until max
         if (flipperStatus == FlipperStatus.movingUp && flipperAngleDifference < flipperAngleMax) {
@@ -131,6 +134,4 @@ public class FlipperBehavior : MonoBehaviour
         }
          
     }
-    
-
 }
